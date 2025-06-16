@@ -20,3 +20,92 @@
 
 // 6. Folosind iterativitatea, scrieți o funcție care verifică dacă un număr este palindrom.
 // Un numar este palindrom daca citit de la stanga la dreapta este acelasi cu citit de la dreapta la stanga.
+
+#include<iostream>
+using namespace std;
+
+int suma (int n);
+int factorial (int n);
+
+int fibonacci (int n);
+void afisareFibo (int n);
+
+bool estePrim (int nr);
+void afisarePrim (int nr);
+
+bool estePalindrom (int n);
+
+int main()
+{
+    //cout << suma (5);
+    //afisareFibo (22);
+    //afisarePrim(20);
+
+    cout << estePalindrom (12321) << endl;
+    cout << estePalindrom (12) << endl;
+    cout << estePalindrom (9999) << endl;
+    cout << estePalindrom (0) << endl;
+    return 0;
+}
+
+int suma(int n)
+{
+    if (n == 0)
+        return 0;
+    return n + suma (n - 1);
+}
+
+int factorial (int n)
+{
+    if (n == 0)
+        return 1;
+    return n * factorial (n - 1);
+}
+
+int fibonacci (int n)
+{
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fibonacci(n - 1) + fibonacci (n - 2);
+}
+
+void afisareFibo (int n)
+{
+    for (int i = 0; i <= n; i++)
+    {
+        cout << fibonacci (i) << " ";
+    }
+}
+
+bool estePrim (int nr)
+{
+    if (nr < 2) return false;
+    if (nr > 2 && nr % 2 == 0) return false;
+    for (int i = 2; i * i <= nr ; i++)
+        if (nr % i == 0)
+            return false;
+    return true;
+}
+
+void afisarePrim(int nr)
+{
+    for (int i = 2; i < nr; i++)
+        if (estePrim(i))
+            cout << i << " ";
+}
+
+bool estePalindrom (int n)
+{
+    if (n >= 0 && n <= 9) return true;
+
+    int copie = n;
+    int invers = 0;
+
+    while (n)
+    {
+        invers = invers * 10 + n % 10;
+        n /= 10;
+    }
+
+    return copie == invers;
+}
